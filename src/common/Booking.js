@@ -1,12 +1,13 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, Image, ImageBackground, Button, Dimensions } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, Image, ImageBackground, Button, Dimensions, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 let deviceWidth = Dimensions.get('window').width;
 let deviceHeight = Dimensions.get('window').height;
 class Booking extends Component {
+    // arrow-left
     static navigationOptions = {
 
         header: null,
@@ -29,7 +30,12 @@ class Booking extends Component {
 
                 }}>
                     <ImageBackground source={{ uri: this.props.navigation.state.params.url }} style={{ width: deviceWidth, height: deviceWidth, }}>
+                        <View style={{ margin: 10 }}>
 
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate("TabView")}>
+                                <Icon name="arrow-left" size={20} color="white" />
+                            </TouchableOpacity>
+                        </View>
 
                         <View style={{
                             borderColor: "white",
@@ -85,9 +91,9 @@ class Booking extends Component {
 
         );
     }
-    clickHandle(){
+    clickHandle() {
         this.props.navigation.state.params.onSelect(this.props.navigation.state.params.id,
-            this.props.navigation.state.params.start,this.props.navigation.state.params.endTime,
+            this.props.navigation.state.params.start, this.props.navigation.state.params.endTime,
             this.props.navigation.state.params.name)
         this.props.navigation.navigate("Book")
     }
